@@ -339,78 +339,101 @@ $(document).ready(function() {
   
   // ******** Adding participant *******
 
-  // var count = 1;
 
-  let setCount;
-  function addItem(count, isGroup){
+  let setCount, idCount, groupno, isGroup = false;
+
+// ******************  Function to Add New Participant  *********************************************************
+  function addItem(count){
+    count++; // change index 0 to 1
+    idCount++; // Change id count by 1
 
     // Cloning first participant detail container
     var newParticipant = $(".participant-details-template:first").clone();
-    count++;
 
-    console.log(newParticipant);
     // Clear the values in the cloned fields
-    newParticipant.find('.participant-name').attr('id', 'participant' + (count)).attr('placeholder', 'Participant ' + (count) + ' Name');
-    newParticipant.find('.register-number').attr('id', 'registerno' + (count));
+    newParticipant.find('.participant-name').attr('id', 'participant' + (idCount)).attr('placeholder', 'Participant ' + (count) + ' Name');
+    newParticipant.find('.register-number').attr('id', 'registerno' + (idCount));
 
-    // newParticipant.find('.participant-name').val('');
-    // newParticipant.find('.register-number').val('');
+    // Change the display hidden to default
+    newParticipant.css('display', '');
 
-    newParticipant.css('display', '')
     // Append the cloned section to the form
-    // newParticipant.appendTo('.participant-details');
     newParticipant.appendTo('.participant-details');
   }
+ 
 
-  let isGroup = false;
 
   $(".add-participant").click((e)=>{
     e.preventDefault();
-    addItem(setCount, isGroup);
+    if(isGroup){
+      groupno++;
+      $('.isgroup').css('display', 'block');
+      $('.isgroup').text("Group 1");
+
+      //For making a heading like Group 1, Group 2
+      var newHeading = $("<h5></h5>");
+
+      // Set content for the new element
+      newHeading.text("Group "+groupno);
+
+      // Append the new element to an existing element
+      newHeading.appendTo(".participant-details");
+
+      // Grouping divs
+      for (let index = 0; index < minCountValue; index++) {
+        addItem(index);  
+      }
+      
+    }
+    else{
+      addItem(setCount++);
+    }
   });
 
 
-  // Changing number of participant input boxes according to the event
-  
-  // let selectedEvent = $("#event-name").val();
-  // console.log(selectedEvent);
-  // let no_of_participant = $("#event-name").attr('mincount').;
-  // console.log(no_of_participant);
+  // *************** For default selected item ***************
   let selectedOption = $("#event-name").find("option:selected").val();
-
   let minCountValue = $("#event-name").find("option:selected").attr("mincount");
-  console.log(selectedOption, "----", minCountValue);
-  
-  // Setting to continue with the numbering when adding new participant
-  setCount = minCountValue;
 
+  // Setting to continue with the numbering when adding new participant
+  setCount = parseInt(minCountValue);
+  idCount = 0;
   for (let index = 0; index < minCountValue; index++) {
     addItem(index);      
   }
+
+
+// ***************** Change in select box *****************
 
   $("#event-name").change(function() {
     selectedOption = $(this).find("option:selected");
 
     // Get the value of the "mincount" attribute
     minCountValue = parseInt(selectedOption.attr("mincount"));
+
     // Setting the mincount as setCount again
     setCount = minCountValue;
 
+    groupno = 1;
+    idCount = 0;
 
-    isGroup = ($(selectedOption).attr("group") !== undefined) ? 'true':'false';
-    if (isGroup){
-      $('.isgroup').text("Group Item")
+    isGroup = ($(selectedOption).attr("group") !== undefined) ? true : false;
+
+    if(isGroup){
+      $('.isgroup').css('display', 'block');
+      $('.isgroup').text("Group 1");
     }
-    // console.log(isGroup);
-
-    // console.log(selectedOption.val(), "--^^^--", minCountValue);
+    else{
+      $('.isgroup').css('display', 'none');
+    }
 
     // Clearing existing participant details
     $(".participant-details").empty();
+    
 
     // Clone and append the participant details template based on "mincount"
     for (let index = 0; index < minCountValue; index++) {
-      addItem(index, isGroup);      
+      addItem(index);      
     }
     
   })
