@@ -36,9 +36,21 @@ class Applicant_Details(models.Model):
         max_length=100,
         null=False
     )
+    EVENT_CHOICES = [
+        ('IT Quiz', 'IT Quiz'),
+        ('IT Manager', 'IT Manager'),
+        ('Gaming', 'Gaming'),
+        ('Hackathon', 'Hackathon'),
+        ('Treasure Hunt', 'Treasure Hunt'),
+        ('Web Designing', 'Web Designing'),
+        ('Coding & Debugging', 'Coding & Debugging'),
+        ('Short Film', 'Short Film'),
+    ]
     event_name = models.CharField(
         max_length= 50,
-        null=False
+        choices=EVENT_CHOICES,
+        null=False,
+
     )
     team_no = models.CharField(
         max_length=100,
@@ -165,4 +177,544 @@ class Applicant_Details(models.Model):
         max_length=100,
         null=True
     )
-    
+    ###########################################################################   individual database    ######################################################
+
+# ###################################                               Applicant details IT Manager
+class IT_manager_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="IT Manager",
+        null=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+
+
+
+  ####################################  #                          Applicant details IT Quiz
+class IT_Quiz_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="IT Quiz",
+        null=False,
+
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 2
+    participant_2_Name = models.CharField(
+        max_length=50,
+        null=False
+        
+    )
+    participant_2_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+
+
+####################################                           Applicant details Gaming
+class Gaming_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="Gaming",
+        null=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 2
+    participant_2_Name = models.CharField(
+        max_length=50,
+        null=False
+        
+    )
+    participant_2_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 3
+    participant_3_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_3_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_3_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_3_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 4
+    participant_4_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_4_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_4_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_4_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 5
+    participant_5_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_5_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_5_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_5_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+
+
+
+
+  ####################################  #                       Applicant details Web Designing
+class Web_Designing_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="Web Designing",
+        null=False,
+
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 2
+    participant_2_Name = models.CharField(
+        max_length=50,
+        null=False
+        
+    )
+    participant_2_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+
+
+
+
+
+####################################                       Applicant details Short Film
+class Short_film_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="Short Film",
+        null=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1   # we are only keeping one participant bcoz in this event everyone will participate
+    participant_1_Name = models.CharField(
+        max_length=500,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=1000,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=500,
+        null=True
+    )
+
+
+
+
+####################################                             Applicant details treasure hunt
+#1 team from each grp and 6 members will there in each team
+class Treasure_hunt_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="Treasure Hunt",
+        null=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 2
+    participant_2_Name = models.CharField(
+        max_length=50,
+        null=False
+        
+    )
+    participant_2_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 3
+    participant_3_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_3_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_3_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_3_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 4
+    participant_4_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_4_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_4_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_4_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 5
+    participant_5_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_5_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_5_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_5_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 6
+    participant_6_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_6_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_6_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_6_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+
+
+
+
+####################################                       Applicant details Coding
+###  in this event total 6 members will be there from each team
+#  so each member will be a team only ... so from one grp 6 team will be there with 1 participant each
+
+class Coding_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="Coding",
+        null=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1   
+    participant_1_Name = models.CharField(
+        max_length=500,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=1000,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=500,
+        null=True
+    )
+
+
+
+
+  ####################################  #                       Applicant details Hackathon
+  # 2 team from each grp with 2 particpant each in a team
+class Hackathon_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="Hackathon",
+        null=False,
+
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 2
+    participant_2_Name = models.CharField(
+        max_length=50,
+        null=False
+        
+    )
+    participant_2_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
