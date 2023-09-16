@@ -318,3 +318,110 @@
   }
 
 })();
+
+
+// ************** REGISTRATION MODAL *******************
+
+
+$(document).ready(function() {
+
+  // ********* Add a click event handler to the registrationBtn link ******
+  $(".registrationBtn").click(function() {
+    // Show the registrationModal when the link is clicked
+    $("#registrationModal").modal('show');
+  });
+  
+  $(".closeModal").click(function() {
+    // Close the registrationModal when clicked
+    $("#registrationModal").modal('hide')
+  });
+  
+  
+  // ******** Adding participant *******
+
+  // var count = 1;
+
+  let setCount;
+  function addItem(count, isGroup){
+
+    // Cloning first participant detail container
+    var newParticipant = $(".participant-details-template:first").clone();
+    count++;
+
+    console.log(newParticipant);
+    // Clear the values in the cloned fields
+    newParticipant.find('.participant-name').attr('id', 'participant' + (count)).attr('placeholder', 'Participant ' + (count) + ' Name');
+    newParticipant.find('.register-number').attr('id', 'registerno' + (count));
+
+    // newParticipant.find('.participant-name').val('');
+    // newParticipant.find('.register-number').val('');
+
+    newParticipant.css('display', '')
+    // Append the cloned section to the form
+    // newParticipant.appendTo('.participant-details');
+    newParticipant.appendTo('.participant-details');
+  }
+
+  let isGroup = false;
+
+  $(".add-participant").click((e)=>{
+    e.preventDefault();
+    addItem(setCount, isGroup);
+  });
+
+
+  // Changing number of participant input boxes according to the event
+  
+  // let selectedEvent = $("#event-name").val();
+  // console.log(selectedEvent);
+  // let no_of_participant = $("#event-name").attr('mincount').;
+  // console.log(no_of_participant);
+  let selectedOption = $("#event-name").find("option:selected").val();
+
+  let minCountValue = $("#event-name").find("option:selected").attr("mincount");
+  console.log(selectedOption, "----", minCountValue);
+  
+  // Setting to continue with the numbering when adding new participant
+  setCount = minCountValue;
+
+  for (let index = 0; index < minCountValue; index++) {
+    addItem(index);      
+  }
+
+  $("#event-name").change(function() {
+    selectedOption = $(this).find("option:selected");
+
+    // Get the value of the "mincount" attribute
+    minCountValue = parseInt(selectedOption.attr("mincount"));
+    // Setting the mincount as setCount again
+    setCount = minCountValue;
+
+
+    isGroup = ($(selectedOption).attr("group") !== undefined) ? 'true':'false';
+    if (isGroup){
+      $('.isgroup').text("Group Item")
+    }
+    // console.log(isGroup);
+
+    // console.log(selectedOption.val(), "--^^^--", minCountValue);
+
+    // Clearing existing participant details
+    $(".participant-details").empty();
+
+    // Clone and append the participant details template based on "mincount"
+    for (let index = 0; index < minCountValue; index++) {
+      addItem(index, isGroup);      
+    }
+    
+  })
+
+});
+
+
+
+
+
+
+
+
+// ****************************************************
