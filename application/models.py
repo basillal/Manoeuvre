@@ -179,6 +179,36 @@ class Applicant_Details(models.Model):
     )
     ###########################################################################   individual database    ######################################################
 
+class Participants(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False,
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False,
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        null=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    participant_name = models.CharField(
+        max_length=100,
+        null=False,
+    )
+    register_number = models.CharField(
+        max_length=15,
+        null=False,
+    )
+
+    # def __str__(self):
+    #     return self.participant_name
+
 # ###################################                               Applicant details IT Manager
 class IT_manager_Details(models.Model):
     team_name = models.CharField(
