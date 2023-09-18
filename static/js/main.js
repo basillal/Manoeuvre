@@ -322,6 +322,7 @@
 
 // ************** REGISTRATION MODAL *******************
 
+let setCount, idCount, groupno, isGroup = false;
 
 $(document).ready(function() {
 
@@ -340,9 +341,8 @@ $(document).ready(function() {
   // ******** Adding participant *******
 
 
-  let setCount, idCount, groupno, isGroup = false;
 
-// ******************  Function to Add New Participant  *********************************************************
+  // ******************  Function to Add New Participant  *********************************************************
   function addItem(count){
     count++; // change index 0 to 1
     idCount++; // Change id count by 1
@@ -351,8 +351,8 @@ $(document).ready(function() {
     var newParticipant = $(".participant-details-template:first").clone();
 
     // Clear the values in the cloned fields
-    newParticipant.find('.participant-name').attr('id', 'participant' + (idCount)).attr('placeholder', 'Participant ' + (count) + ' Name');
-    newParticipant.find('.register-number').attr('id', 'registerno' + (idCount));
+    newParticipant.find('.participant-name').attr('id', 'participant' + (idCount)).attr('name', 'participant' + (count)).attr('placeholder', 'Participant ' + (count) + ' Name');
+    newParticipant.find('.register-number').attr('id', 'registerno' + (idCount)).attr('name', 'register_no' + (count));
 
     // Change the display hidden to default
     newParticipant.css('display', '');
@@ -403,7 +403,7 @@ $(document).ready(function() {
   }
 
 
-// ***************** Change in select box *****************
+  // ***************** Change in select box *****************
 
   $("#event-name").change(function() {
     selectedOption = $(this).find("option:selected");
@@ -436,15 +436,49 @@ $(document).ready(function() {
       addItem(index);      
     }
     
-  })
+  });
 
+  // $(".register-event").click((e)=> {
+  //   e.preventDefault();
+  //   console.log("registered");
+    
+    
+  //   // })
+  // });
+
+  // Function to perform registration
+  $('#registrationForm').submit(function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    var formData = $(this).serialize(); // Serialize the form data
+
+    $.ajax({
+        url: '/event_registration/', // Replace with your URL
+        type: 'POST',
+        data: formData, // Include serialized form data
+        success: function (response) {
+            console.log(response);
+            callToast(); // Handle the response from the server
+            $('#registrationForm')[0].reset();
+        },
+        error: function () {
+            console.log('Error submitting form');
+        }
+    });
 });
 
 
 
+});
 
 
+// ************* END OF REGISTRATION FORM ***********************
 
-
-
-// ****************************************************
+// TOAST MESSAGE 
+function callToast() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(()=> { 
+    x.className = x.className.replace("show", "");
+  }, 3000);
+}
