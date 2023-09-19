@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from .models import Applicant_Details
 from django.shortcuts import render,redirect
+from django.contrib import messages
 from .forms import ApplicantForm,ParticipantForm,shortfilmForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm,codingForm
 # from .models import Participants  # Import your Participant model here
 # from .forms import ParticipantForm  # Import your ParticipantForm here
@@ -80,10 +81,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = itmanagerForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save() 
+                messages.success(request, 'Form saved')            
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
                
         return render(request,'registration.html', context)
@@ -92,10 +95,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = itquizForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()
+                messages.success(request, 'Form saved')             
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
        
         return render(request,'registration.html', context)
@@ -104,10 +109,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = gamingForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()   
+                messages.success(request, 'Form saved')          
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
        
         return render(request,'registration.html', context)
@@ -116,10 +123,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = hackathonForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()    
+                messages.success(request, 'Form saved')         
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
        
         return render(request,'registration.html', context)
@@ -128,10 +137,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = tressureForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()    
+                messages.success(request, 'Form saved')         
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
        
         return render(request,'registration.html', context)
@@ -140,10 +151,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = hackathonForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()    
+                messages.success(request, 'Form saved')         
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
        
         return render(request,'registration.html', context)
@@ -152,10 +165,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = codingForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()
+                messages.success(request, 'Form saved')           
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
        
         return render(request,'registration.html', context)
@@ -164,10 +179,12 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = WebdesignForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()  
+                messages.success(request, 'Form saved')           
 
         context = {
-            'form': form
+            'form': form,
+            'eventname' : event
         }    
        
         return render(request,'registration.html', context)
