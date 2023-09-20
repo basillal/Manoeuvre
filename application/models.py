@@ -228,6 +228,7 @@ class Applicant_Details(models.Model):
     ###########################################################################   individual database    ######################################################
 
 # ###################################                               Applicant details IT Manager
+# class IT_manager_Details(models.Model):
 class IT_manager_Details(models.Model):
     team_name = models.CharField(
         max_length=100,
@@ -276,8 +277,8 @@ class IT_manager_Details(models.Model):
     ############### participant 2
     participant_2_Name = models.CharField(
         max_length=50,
+        default="",  # Add a default value here (empty string in this case)
         null=False
-        
     )
     participant_2_class = models.CharField(
         max_length=100,
@@ -342,6 +343,7 @@ class IT_manager_Details(models.Model):
         max_length=100,
         null=True
     )
+
 
 
 
@@ -782,18 +784,23 @@ class Coding_Details(models.Model):
     ############### participant 1   
     participant_1_Name = models.CharField(
         max_length=500,
-        null=False
+        default=" ",
+        null=False,
+        
     )
     participant_1_class = models.CharField(
         max_length=50,
+        default=" ",
         null=False
     )
     participant_1_rollno = models.CharField(
         max_length=1000,
+        default=" ",
         null=False
     )
     participant_1_contactno = models.CharField(
         max_length=500,
+        default=" ",
         null=False
     )
 
@@ -834,35 +841,43 @@ class Hackathon_Details(models.Model):
     ############### participant 1
     participant_1_Name = models.CharField(
         max_length=50,
+        default=" ",
         null=False
     )
     participant_1_class = models.CharField(
         max_length=100,
+        default=" ",
         null=False
     )
     participant_1_rollno = models.CharField(
         max_length=100,
+        default=" ",
         null=False
     )
     participant_1_contactno = models.CharField(
         max_length=100,
+        default=" ",
         null=False
     )
     ############### participant 2
     participant_2_Name = models.CharField(
         max_length=50,
+        default=" ",
         null=False
         
     )
     participant_2_class = models.CharField(
         max_length=100,
+        default=" ",
         null=False
     )
     participant_2_rollno = models.CharField(
         max_length=100,
+        default=" ",
         null=False
     )
     participant_2_contactno = models.CharField(
         max_length=100,
+        default=" ",
         null=False
     )

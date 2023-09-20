@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render,redirect
-from .forms import ApplicantForm,ParticipantForm, WebdesignForm
+from .forms import ApplicantForm,ParticipantForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm
 # from .models import Participants  # Import your Participant model here
 # from .forms import ParticipantForm  # Import your ParticipantForm here
 
@@ -24,6 +24,8 @@ def index(request):
 
     return render(request,'index.html', context)
 
+
+##################
 def event_registration(request):
     if request.method == 'POST':
         # Access and process form data
@@ -39,18 +41,64 @@ def event_registration(request):
 
 
 
-def registration_view(request):
+# #################################################################################################################
+def itmanager(request):
+    form = itmanagerForm()
+    context = {
+        'form': form
+    }
     if request.method == 'POST':
-        form = ApplicantForm(request.POST)
+        form = itmanagerForm(request.POST)
+        print("success")
         if form.is_valid():
             form.save()
             print("Data saved successfully")  # Add this line for debugging
             
             return JsonResponse({'message': 'Registration Successful'})
              # Redirect to a success page
-        else:
-            print(form.errors)  # Print form errors for debugging
-    else:
-        form = ApplicantForm()
-    return render(request, 'registration.html', {'form': form})
+
+    return render(request,'itmanager.html', context)
+
+# #################################################
+
+# def index(request):
+#     form = WebdesignForm()
+#     context = {
+#         'form': form
+#     }
+#     if request.method == 'POST':
+#         form = WebdesignForm(request.POST)
+#         print("success")
+#         if form.is_valid():
+#             form.save()
+#             print("Data saved successfully")  # Add this line for debugging
+            
+#             return JsonResponse({'message': 'Registration Successful'})
+#              # Redirect to a success page
+
+#     return render(request,'index.html', context)
+
+###################################################
+
+
+
+
+
+
+
+
+# def registration_view(request):
+#     if request.method == 'POST':
+#         form = ApplicantForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             print("Data saved successfully")  # Add this line for debugging
+            
+#             return JsonResponse({'message': 'Registration Successful'})
+#              # Redirect to a success page
+#         else:
+#             print(form.errors)  # Print form errors for debugging
+#     else:
+#         form = ApplicantForm()
+#     return render(request, 'registration.html', {'form': form})
 

@@ -328,9 +328,15 @@ let setCount, idCount, groupno, isGroup = false;
 $(document).ready(function() {
 
   // ********* Add a click event handler to the registrationBtn link ******
-  $(".registrationBtn").click(function() {
+  $(".ITMregistrationBtn").click(function() {
     // Show the registrationModal when the link is clicked
-    $("#registrationModal").modal('show');
+    //$("#registrationModal").modal('show');
+    window.location.href = 'itmanager/';
+  });
+  $(".webregistrationBtn").click(function() {
+    // Show the registrationModal when the link is clicked
+    //$("#registrationModal").modal('show');
+    window.location.href = 'webdesigning/';
   });
   
   $(".closeModal").click(function() {
