@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{% block tile%} {% endblock %}</title>
+  <title>{% block title%} {% endblock %}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -102,18 +102,90 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{% url 'registrationpage_view'%}">
+            <a class="registrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>Registration</span>
             </a>
           </li>           
         </ul>
       </li>
-      
-
-     
+    
     </ul>
 
   </aside><!-- End Sidebar-->
+
+  <!-- Toast Message -->
+  
+  <!-- Registration modal -->
+  <div class="modal fade" id="registrationModal">
+  <div id="snackbar">Event registration Successful.</div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Event Registration</h4>
+          <button type="button" class="closeModal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- Registration form or content here -->
+          <form method="post" id="registrationForm">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="event-name">Event Name</label>
+              <select class="form-control" id="event-name" name="event_name">
+
+                <option value="coding" selected mincount="4">Coding & Debugging</option>
+                <option value="itmanager" mincount="1">IT Manager</option>
+                <option value="itquiz" mincount="2" group>IT Quiz</option>
+                <option value="webdesign" mincount="2" group>Web Designing</option>
+                <option value="hackathon" mincount="2" group>Hackathon</option>
+                <option value="shortfilm" mincount="10">Short Film</option>
+                <option value="gaming" mincount="4" group>Gaming</option>
+                <option value="treasurehunt" mincount="6" group>Treasure Hunt</option>
+
+              </select>
+            </div>
+            <hr />
+            <div class="participant-container">
+              <h5 class="text-secondary text-center">Participant Details</h5>
+              <div class="totalparticipant mt-3">
+
+                <!-- hidden participant detail template for cloning -->
+                <div class="participant-details-template" style="display: none;">
+                  <div class="form-group details">
+                    <!-- Name and register number of participant -->
+                    <input type="text" name="team_name" class="form-control participant-name" id="sampleid" placeholder="Participant 1 Name">
+                    <input type="text" class="form-control register-number" id="sample" placeholder="Register Number">
+                  </div>
+                </div>
+
+                <h5 class="isgroup" style="display: none;"></h5>
+                
+                <div class="participant-details">
+                  <!-- Participant details will be added here -->
+                </div>
+
+              </div>
+  
+              <div class="text-center">
+                <button class="btn add-participant" id="add-participant">Add Participant</button>
+              </div>
+              
+            </div>
+            <div class="text-center mb-0" id="registerBtn">
+              <button type="submit" class="register-event btn btn-primary px-5" id="register-event">Register</button>
+            </div>
+          </form>
+        </div>
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Register</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
 
   <main id="main" class="main">
     {% block content %}
@@ -136,6 +208,10 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- bootstap 4 for crispy forms -->
+<!-- Include Bootstrap 4 CSS from a CDN (recommended) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+
 
   <!-- Vendor JS Files -->
   <script src="static/vendor/apexcharts/apexcharts.min.js"></script>
@@ -147,8 +223,16 @@
   <script src="static/vendor/tinymce/tinymce.min.js"></script>
   <script src="static/vendor/php-email-form/validate.js"></script>
 
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
   <!-- Template Main JS File -->
   <script src="static/js/main.js"></script>
+
+  <!-- <script>
+
+  </script> -->
 
 </body>
 
