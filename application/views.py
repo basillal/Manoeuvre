@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from .models import Applicant_Details
 from django.shortcuts import render,redirect
-from .forms import ApplicantForm,ParticipantForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm
+from .forms import ApplicantForm,ParticipantForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm, codingForm, shortfilmForm
 # from .models import Participants  # Import your Participant model here
 # from .forms import ParticipantForm  # Import your ParticipantForm here
 
@@ -123,7 +123,7 @@ def registration(request, event_name):
         }    
        
         return render(request,'registration.html', context)
-    elif event == "Treasure Hunt":
+    elif event == "TreasureHunt":
         form = tressureForm()
         if request.method == 'POST':
             form = tressureForm(request.POST)
@@ -135,10 +135,34 @@ def registration(request, event_name):
         }    
        
         return render(request,'registration.html', context)
-    elif event == "Hackathon":
-        form = hackathonForm()
+    elif event == "Shortfilm":
+        form = shortfilmForm()
         if request.method == 'POST':
             form = hackathonForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+       
+        return render(request,'registration.html', context)
+    elif event == "coding":
+        form = codingForm()
+        if request.method == 'POST':
+            form = codingForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+       
+        return render(request,'registration.html', context)
+    elif event == "webdesign":
+        form = WebdesignForm()
+        if request.method == 'POST':
+            form = WebdesignForm(request.POST)
             if form.is_valid():
                 form.save()            
 
