@@ -62,3 +62,54 @@ def itmanager(request):
     
     return render(request,'itmanager.html', context)
 
+
+def eventpage(request,n):
+    event=n
+    if event == "IT Manager":
+        form = itmanagerForm()
+        if request.method == 'POST':
+            form = itmanagerForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }     
+        
+        return render(request,'itmanager.html', context)
+    elif event == "IT Quiz":
+        form = itquizForm()
+        if request.method == 'POST':
+            form = itquizForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }     
+        
+        return render(request,'itmanager.html', context)
+    elif event == "Gaming":
+        form = gamingForm()
+        if request.method == 'POST':
+            form = gamingForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }     
+        
+        return render(request,'itmanager.html', context)
+    elif event == "Hackathon":
+        form = hackathonForm()
+        if request.method == 'POST':
+            form = hackathonForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }     
+        
+        return render(request,'itmanager.html', context)
