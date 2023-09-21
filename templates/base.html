@@ -174,14 +174,24 @@
             <div class="form-group">
               <label for="event-name">Event Name</label>
               <select class="form-control" id="event-name" name="event_name">
-
+                <a href="{% url 'registration' 'coding' %}">
                 <option value="coding" selected mincount="4">Coding & Debugging</option>
+                </a>
+                <a href="{% url 'registration' 'ITManager' %}">
                 <option value="itmanager" mincount="1">IT Manager</option>
+                </a>
+                <a href="{% url 'registration' 'ITQuiz' %}">
                 <option value="itquiz" mincount="2" group>IT Quiz</option>
+                
+                <a href="{% url 'registration' 'ITManager' %}"></a>
                 <option value="webdesign" mincount="2" group>Web Designing</option>
+                <a href="{% url 'registration' 'Hackathon' %}"></a>
                 <option value="hackathon" mincount="2" group>Hackathon</option>
+                <a href="{% url 'registration' 'ITManager' %}"></a>
                 <option value="shortfilm" mincount="10">Short Film</option>
+                <a href="{% url 'registration' 'Gaming' %}"></a>
                 <option value="gaming" mincount="4" group>Gaming</option>
+                <a href="{% url 'registration' 'Treasure Hunt' %}"></a>
                 <option value="treasurehunt" mincount="6" group>Treasure Hunt</option>
 
               </select>
