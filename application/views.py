@@ -85,10 +85,9 @@ def registration(request, event_name):
         context = {
             'form': form
         }    
-        return redirect('registration')
-       
+               
         return render(request,'registration.html', context)
-    elif event == "IT Quiz":
+    elif event == "ITQuiz":
         form = itquizForm()
         if request.method == 'POST':
             form = itquizForm(request.POST)
