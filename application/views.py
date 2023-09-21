@@ -49,9 +49,10 @@ def event_registration(request):
 
 
 # #################################################################################################################
-def itmanager(request):
+def itmanager(request,n):
+    form = n
+    print(form)
    
-    
     return render(request,'itmanager.html')
 
 # #################################################
