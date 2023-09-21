@@ -49,52 +49,16 @@ def event_registration(request):
 
 
 # #################################################################################################################
-def itmanager(request,n):
-    form = n
-    print(form)
-   
-    return render(request,'itmanager.html')
+def itmanager(request):
+    form = itmanagerForm()
+    if request.method == 'POST':
+        form = itmanagerForm(request.POST)
+        if form.is_valid():
+            form.save()            
 
-# #################################################
-
-# def index(request):
-#     form = WebdesignForm()
-#     context = {
-#         'form': form
-#     }
-#     if request.method == 'POST':
-#         form = WebdesignForm(request.POST)
-#         print("success")
-#         if form.is_valid():
-#             form.save()
-#             print("Data saved successfully")  # Add this line for debugging
-            
-#             return JsonResponse({'message': 'Registration Successful'})
-#              # Redirect to a success page
-
-#     return render(request,'index.html', context)
-
-###################################################
-
-
-
-
-
-
-
-
-# def registration_view(request):
-#     if request.method == 'POST':
-#         form = ApplicantForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             print("Data saved successfully")  # Add this line for debugging
-            
-#             return JsonResponse({'message': 'Registration Successful'})
-#              # Redirect to a success page
-#         else:
-#             print(form.errors)  # Print form errors for debugging
-#     else:
-#         form = ApplicantForm()
-#     return render(request, 'registration.html', {'form': form})
+    context = {
+        'form': form
+    }     
+    
+    return render(request,'itmanager.html', context)
 

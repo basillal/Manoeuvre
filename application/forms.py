@@ -60,51 +60,33 @@ class WebdesignForm(forms.ModelForm):
     class Meta:
         model = Web_Designing_Details
         fields = '__all__'
-
-        labels = {
-            'team_leader': 'King'
-            
-        }
+        
 
 class codingForm(forms.ModelForm):
     class Meta:
         model = Coding_Details
         fields = '__all__'
-
-        labels = {
-            'team_leader': 'King'
-            
-        }
+        
 
 class itmanagerForm(forms.ModelForm):
     class Meta:
         model = IT_manager_Details
         fields = '__all__'
-
-        labels = {
-            'team_leader': 'King'
-            
-        }
+       
 
 class shortfilmForm(forms.ModelForm):
     class Meta:
         model = Short_film_Details
         fields = '__all__'
 
-        labels = {
-            'team_leader': 'King'
-            
-        }
+        
 
 class hackathonForm(forms.ModelForm):
     class Meta:
         model = Hackathon_Details
         fields = '__all__'
 
-        labels = {
-            'team_leader': 'King'
-            
-        }
+        
 
 class tressureForm(forms.ModelForm):
     class Meta:
@@ -121,17 +103,11 @@ class itquizForm(forms.ModelForm):
         model = IT_Quiz_Details
         fields = '__all__'
 
-        labels = {
-            'team_leader': 'King'
-            
-        }
+        
 
 class gamingForm(forms.ModelForm):
     class Meta:
         model = Gaming_Details
         fields = '__all__'
 
-        labels = {
-            'team_leader': 'King'
-            
-        }
+        

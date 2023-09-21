@@ -7,7 +7,7 @@ urlpatterns = [
     # path('success/', views.success_page, name='success_page')  #
     # path('event_registration/', views.event_registration, name='event_registration')
     # path('event_registration/', views.event_registration, name='event_registration'),
-    path('itmanager/<int:n>/', views.itmanager, name='itmanager'),
+    path('itmanager', views.itmanager, name='itmanager'),
 
  
 ]
