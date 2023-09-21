@@ -881,3 +881,12 @@ class Hackathon_Details(models.Model):
         default=" ",
         null=False
     )
+
+
+
+
+
+
+
+
+

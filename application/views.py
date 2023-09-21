@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from .models import Applicant_Details
 from django.shortcuts import render,redirect
 from .forms import ApplicantForm,ParticipantForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm
 # from .models import Participants  # Import your Participant model here
@@ -9,8 +10,14 @@ from .forms import ApplicantForm,ParticipantForm, WebdesignForm ,itmanagerForm,i
 # Create your views here.
 def index(request):
     form = WebdesignForm()
+    n = 0
+    event_choices = [
+        'IT Quiz','IT Manager','Gaming','Hackathon','Treasure Hunt','Web Designing','Coding & Debugging', 'Short Film', 
+        ]
     context = {
-        'form': form
+        'form': form,
+        'event_choices': event_choices,
+        'n': n
     }
     if request.method == 'POST':
         form = WebdesignForm(request.POST)
@@ -43,21 +50,9 @@ def event_registration(request):
 
 # #################################################################################################################
 def itmanager(request):
-    form = itmanagerForm()
-    context = {
-        'form': form
-    }
-    if request.method == 'POST':
-        form = itmanagerForm(request.POST)
-        print("success")
-        if form.is_valid():
-            form.save()
-            print("Data saved successfully")  # Add this line for debugging
-            
-            return JsonResponse({'message': 'Registration Successful'})
-             # Redirect to a success page
-
-    return render(request,'itmanager.html', context)
+   
+    
+    return render(request,'itmanager.html')
 
 # #################################################
 
