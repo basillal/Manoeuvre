@@ -108,42 +108,42 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{% url 'itmanager'%}" class="ITQregistrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'ITManager' %}" class="ITQregistrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>IT Manager</span>
             </a>
           </li>  
           <li>
-            <a class="ITQregistrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'ITQuiz' %}" class="ITQregistrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>IT Quiz</span>
             </a>
           </li>
           <li>
-            <a class="HackregistrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'Hackathon' %}" class="HackregistrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>Hackathon</span>
             </a>
           </li>  
           <li>
-            <a class="registrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'coding' %}" class="registrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>Coding</span>
             </a>
           </li>  
           <li>
-            <a class="registrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'ITreasureHunt' %}" class="registrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>Treasure Hunt</span>
             </a>
           </li>  
           <li>
-            <a class="registrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'Gaming' %}"class="registrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>Gaming</span>
             </a>
           </li>  
           <li>
-            <a class="registrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'Shortfilm' %}" class="registrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>Short Film</span>
             </a>
           </li>  
           <li>
-            <a class="webregistrationBtn" style="cursor: pointer;">
+            <a href="{% url 'registration' 'webdesign' %}" class="webregistrationBtn" style="cursor: pointer;">
               <i class="bi bi-circle"></i><span>Web Designing</span>
             </a>
           </li>            
