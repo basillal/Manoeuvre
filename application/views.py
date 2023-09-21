@@ -32,19 +32,7 @@ def index(request):
     return render(request,'index.html', context)
 
 
-##################
-def event_registration(request):
-    if request.method == 'POST':
-        # Access and process form data
-        print(request.POST.dict())
-        event_name = request.POST.get('event_name')
-        print(event_name)
 
-        return JsonResponse({'message': 'Registration Successful'})
-    else:
-        # Handle other HTTP methods if needed
-        return JsonResponse({'error': 'Invalid Request Method'}, status=405)
-    
 
 
 
@@ -62,3 +50,101 @@ def itmanager(request):
     
     return render(request,'itmanager.html', context)
 
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def registration(request, event_name):
+    event=event_name
+    print(event_name,event)
+    if event == "ITManager":
+        form = itmanagerForm()
+        if request.method == 'POST':
+            form = itmanagerForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+        return redirect('registration')
+       
+        return render(request,'registration.html', context)
+    elif event == "IT Quiz":
+        form = itquizForm()
+        if request.method == 'POST':
+            form = itquizForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+       
+        return render(request,'registration.html', context)
+    elif event == "Gaming":
+        form = gamingForm()
+        if request.method == 'POST':
+            form = gamingForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+       
+        return render(request,'registration.html', context)
+    elif event == "Hackathon":
+        form = hackathonForm()
+        if request.method == 'POST':
+            form = hackathonForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+       
+        return render(request,'registration.html', context)
+    elif event == "Treasure Hunt":
+        form = tressureForm()
+        if request.method == 'POST':
+            form = tressureForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+       
+        return render(request,'registration.html', context)
+    elif event == "Hackathon":
+        form = hackathonForm()
+        if request.method == 'POST':
+            form = hackathonForm(request.POST)
+            if form.is_valid():
+                form.save()            
+
+        context = {
+            'form': form
+        }    
+       
+        return render(request,'registration.html', context)
