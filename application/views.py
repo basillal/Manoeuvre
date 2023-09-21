@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from .models import Applicant_Details
 from django.shortcuts import render,redirect
-from .forms import ApplicantForm,ParticipantForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm, codingForm, shortfilmForm
+from .forms import ApplicantForm,ParticipantForm,shortfilmForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm,codingForm
 # from .models import Participants  # Import your Participant model here
 # from .forms import ParticipantForm  # Import your ParticipantForm here
 
