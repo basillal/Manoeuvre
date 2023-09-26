@@ -11,7 +11,7 @@ from .models import IT_manager_Details,IT_Quiz_Details,Hackathon_Details,Coding_
 # ParticipantFormSet = formset_factory(ParticipantForm)
 
 # Create your views here.
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def index(request):
     form = WebdesignForm()
     n = 0
@@ -20,15 +20,13 @@ def index(request):
         ]
     context = {
         'form': form,
-        'event_choices': event_choices,
-        'n': n
+        'event_choices': event_choices,       
     }
     if request.method == 'POST':
         form = WebdesignForm(request.POST)
         print("success")
         if form.is_valid():
-            form.save()
-            print("Data saved successfully")  # Add this line for debugging
+            form.save()           
             
             return JsonResponse({'message': 'Registration Successful'})
              # Redirect to a success page
@@ -37,7 +35,7 @@ def index(request):
 
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def registration(request, event_name):
     event=event_name
     print(event_name,event)
@@ -50,7 +48,7 @@ def registration(request, event_name):
             if form.is_valid():
                 form.save()  
                 form = itmanagerForm()
-                messages.info(request,'Registered Successfully')
+                messages.info(request,'Successfully')
 
                
                 
@@ -68,85 +66,122 @@ def registration(request, event_name):
         return render(request,'registration.html', context)
     elif event == "ITQuiz":
         form = itquizForm()
+        registered_students = IT_Quiz_Details.objects.filter(event_name = "IT Quiz")  
         if request.method == 'POST':
             form = itquizForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()    
+                form = itquizForm()
+                messages.info(request,'Successfully')        
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
         }    
        
         return render(request,'registration.html', context)
     elif event == "Gaming":
         form = gamingForm()
+        registered_students = Gaming_Details.objects.filter(event_name = "Gaming")  
         if request.method == 'POST':
             form = gamingForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save() 
+                form = gamingForm()
+                messages.info(request,'Successfully')           
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
         }    
        
         return render(request,'registration.html', context)
     elif event == "Hackathon":
         form = hackathonForm()
+        registered_students = Hackathon_Details.objects.filter(event_name = "Hackathon")  
         if request.method == 'POST':
             form = hackathonForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()  
+                form = hackathonForm()
+                messages.info(request,'Successfully')             
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
         }    
        
         return render(request,'registration.html', context)
     elif event == "TreasureHunt":
         form = tressureForm()
+        registered_students = Treasure_hunt_Details.objects.filter(event_name = "Treasure Hunt")  
         if request.method == 'POST':
             form = tressureForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save() 
+                form = tressureForm()
+                messages.info(request,'Successfully')             
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
         }    
        
         return render(request,'registration.html', context)
     elif event == "Shortfilm":
         form = shortfilmForm()
+        registered_students = Short_film_Details.objects.filter(event_name = "Short Film")  
         if request.method == 'POST':
-            form = hackathonForm(request.POST)
+            form = shortfilmForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save() 
+                form = shortfilmForm()
+                messages.info(request,'Successfully')   
+                          
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
         }    
        
         return render(request,'registration.html', context)
     elif event == "coding":
         form = codingForm()
+        registered_students = Coding_Details.objects.filter(event_name = "Coding")  
         if request.method == 'POST':
             form = codingForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save() 
+                form = codingForm()
+                messages.info(request,'Successfully')   
+                                     
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
         }    
        
         return render(request,'registration.html', context)
     elif event == "webdesign":
         form = WebdesignForm()
+        registered_students = Web_Designing_Details.objects.filter(event_name = "Web Designing")  
         if request.method == 'POST':
             form = WebdesignForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()  
+                form = WebdesignForm()
+                messages.info(request,'Successfully')           
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
         }    
        
         return render(request,'registration.html', context)
