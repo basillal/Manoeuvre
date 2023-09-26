@@ -59,24 +59,10 @@
 
         <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{% static 'img/profile-img.jpg'%}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url 'logout' %} ">           
+            <span class="d-none d-md-block "><i class="bi bi-box-arrow-left"></i> {{request.user}}</span>           
           </a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-                <h6>Kevin Anderson</h6>               
-              </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
 
       </ul>
@@ -95,12 +81,7 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " href="{% url 'registration' 'ITQuiz'%}">
-          <i class="bi bi-grid"></i>
-          <span>All Registration</span>
-        </a>
-      </li>
+     
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">

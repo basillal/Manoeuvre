@@ -1,13 +1,17 @@
 from django.http import JsonResponse
-from .models import Applicant_Details
+from django.contrib import messages
 from django.shortcuts import render,redirect
-from .forms import ApplicantForm,ParticipantForm,shortfilmForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm,codingForm
-# from .models import Participants  # Import your Participant model here
-# from .forms import ParticipantForm  # Import your ParticipantForm here
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .forms import ApplicantForm,ParticipantForm,shortfilmForm, WebdesignForm ,itmanagerForm,itquizForm,gamingForm,hackathonForm,tressureForm,codingForm, CreateUserForms
+from .models import IT_manager_Details,IT_Quiz_Details,Hackathon_Details,Coding_Details,Treasure_hunt_Details,Gaming_Details,Short_film_Details,Web_Designing_Details
+
+
 
 # ParticipantFormSet = formset_factory(ParticipantForm)
 
 # Create your views here.
+@login_required(login_url='login')
 def index(request):
     form = WebdesignForm()
     n = 0
@@ -29,61 +33,36 @@ def index(request):
             return JsonResponse({'message': 'Registration Successful'})
              # Redirect to a success page
 
-    return render(request,'index.html', context)
+    return render(request,'index.html', context)   
 
 
 
-
-
-
-# #################################################################################################################
-def itmanager(request):
-    form = itmanagerForm()
-    if request.method == 'POST':
-        form = itmanagerForm(request.POST)
-        if form.is_valid():
-            form.save()            
-
-    context = {
-        'form': form
-    }     
-    
-    return render(request,'itmanager.html', context)
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@login_required(login_url='login')
 def registration(request, event_name):
     event=event_name
     print(event_name,event)
+
     if event == "ITManager":
         form = itmanagerForm()
+        registered_students = IT_manager_Details.objects.filter(event_name = "IT Manager")  
         if request.method == 'POST':
             form = itmanagerForm(request.POST)
             if form.is_valid():
-                form.save()            
+                form.save()  
+                form = itmanagerForm()
+                messages.info(request,'Registered Successfully')
+
+               
+                
+                
 
         context = {
-            'form': form
+            'form': form,
+            'event_name': event,
+            'registered_students': registered_students,
+
+            
+
         }    
                
         return render(request,'registration.html', context)
@@ -171,3 +150,28 @@ def registration(request, event_name):
         }    
        
         return render(request,'registration.html', context)
+
+
+
+
+
+def loginPage(request):
+   
+    if request.method =='POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password )
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.info(request,'username OR password is incorrect')
+            return render(request,'auth/login.html')
+        
+    return render(request,'auth/login.html')
+
+def logoutUser(request):
+    logout(request)    
+    return redirect('login')
+

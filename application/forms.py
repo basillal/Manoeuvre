@@ -1,5 +1,12 @@
 from django import forms
 from .models import Participants,Applicant_Details,Web_Designing_Details,IT_manager_Details,IT_Quiz_Details,Gaming_Details,Hackathon_Details,Treasure_hunt_Details,Coding_Details,Short_film_Details
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
+
+
+
 
 class ParticipantForm(forms.ModelForm):
     class Meta:
@@ -111,3 +118,7 @@ class gamingForm(forms.ModelForm):
         fields = '__all__'
 
         
+class CreateUserForms(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','email','password1','password2']
