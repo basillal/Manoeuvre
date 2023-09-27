@@ -3,29 +3,77 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 
 # Login details
-class User():
+class CustomUser(AbstractBaseUser):
     email = models.EmailField(
         primary_key=True
     )
     username = models.CharField(
-        max_length= 100,
-        null = False
+        max_length=100,
+        null = True
+    )
+    team_name = models.CharField(
+        max_length=100,
+        null = True
+    )
+    team_leader2= models.CharField(
+        max_length= 50,
+        null = True
     )
     password = models.CharField(
         max_length= 50,
         null = False
     )
-    user_type = models.CharField(
-        max_length=100,
-        null=False
-    )
+    is_team = models.BooleanField(default=False)
+    is_oncontrol = models.BooleanField(default=False)
     
-    def get_full_name(self):
-        return self.username
+
     
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
     def __str__(self):
-        return self.email
+        return self.username
+
+    def has_perm(self, perm, obj=None):
+        return self.is_team
+
+    def has_module_perms(self, app_label):
+        return True
     
+
+
+
+
+
+class Participants(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False,
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False,
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        null=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="Team 1"
+    )
+    participant_name = models.CharField(
+        max_length=100,
+        null=False,
+    )
+    register_number = models.CharField(
+        max_length=15,
+        null=False,
+   )
+
+
 # Applicant details loaded from excel
 class Applicant_Details(models.Model):
     team_name = models.CharField(
@@ -180,6 +228,7 @@ class Applicant_Details(models.Model):
     ###########################################################################   individual database    ######################################################
 
 # ###################################                               Applicant details IT Manager
+# class IT_manager_Details(models.Model):
 class IT_manager_Details(models.Model):
     team_name = models.CharField(
         max_length=100,
@@ -193,52 +242,20 @@ class IT_manager_Details(models.Model):
         max_length= 50,
         default="IT Manager",
         null=False,
+        editable=False,
     )
+    TEAM_CHOICES = [
+        ('1', 'Team 1'),
+        ('2', 'Team 2'),
+        ('3', 'Team 3'),
+        ('4', 'Team 4'),
+        ('5', 'Team 5'),
+        ('6', 'Team 6')
+    ]
     team_no = models.CharField(
         max_length=100,
         null=False,
-        default="Team 1"
-    )
-    ############### participant 1
-    participant_1_Name = models.CharField(
-        max_length=50,
-        null=False
-    )
-    participant_1_class = models.CharField(
-        max_length=100,
-        null=True
-    )
-    participant_1_rollno = models.CharField(
-        max_length=100,
-        null=True
-    )
-    participant_1_contactno = models.CharField(
-        max_length=100,
-        null=True
-    )
-
-
-
-  ####################################  #                          Applicant details IT Quiz
-class IT_Quiz_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
-    team_leader = models.CharField(
-        max_length=100,
-        null=False
-    )
-    event_name = models.CharField(
-        max_length= 50,
-        default="IT Quiz",
-        null=False,
-
-    )
-    team_no = models.CharField(
-        max_length=100,
-        null=False,
-        default="Team 1"
+        choices=TEAM_CHOICES
     )
     ############### participant 1
     participant_1_Name = models.CharField(
@@ -260,65 +277,8 @@ class IT_Quiz_Details(models.Model):
     ############### participant 2
     participant_2_Name = models.CharField(
         max_length=50,
+        default="",  # Add a default value here (empty string in this case)
         null=False
-        
-    )
-    participant_2_class = models.CharField(
-        max_length=100,
-        null=True
-    )
-    participant_2_rollno = models.CharField(
-        max_length=100,
-        null=True
-    )
-    participant_2_contactno = models.CharField(
-        max_length=100,
-        null=True
-    )
-
-
-####################################                           Applicant details Gaming
-class Gaming_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
-    team_leader = models.CharField(
-        max_length=100,
-        null=False
-    )
-    event_name = models.CharField(
-        max_length= 50,
-        default="Gaming",
-        null=False,
-    )
-    team_no = models.CharField(
-        max_length=100,
-        null=False,
-        default="Team 1"
-    )
-    ############### participant 1
-    participant_1_Name = models.CharField(
-        max_length=50,
-        null=False
-    )
-    participant_1_class = models.CharField(
-        max_length=100,
-        null=True
-    )
-    participant_1_rollno = models.CharField(
-        max_length=100,
-        null=True
-    )
-    participant_1_contactno = models.CharField(
-        max_length=100,
-        null=True
-    )
-    ############### participant 2
-    participant_2_Name = models.CharField(
-        max_length=50,
-        null=False
-        
     )
     participant_2_class = models.CharField(
         max_length=100,
@@ -387,6 +347,167 @@ class Gaming_Details(models.Model):
 
 
 
+  ####################################  #                          Applicant details IT Quiz
+class IT_Quiz_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="IT Quiz",
+        null=False,
+        editable=False,
+
+    )
+    TEAM_CHOICES = [
+        ('1', 'Team 1'),
+        ('2', 'Team 2'),
+        ('3', 'Team 3'),
+        ('4', 'Team 4'),
+        ('5', 'Team 5'),
+        ('6', 'Team 6')
+    ]
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        choices=TEAM_CHOICES
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 2
+    participant_2_Name = models.CharField(
+        max_length=50,
+        null=False
+        
+    )
+    participant_2_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+
+
+####################################                           Applicant details Gaming
+class Gaming_Details(models.Model):
+    team_name = models.CharField(
+        max_length=100,
+        null=False
+    )
+    team_leader = models.CharField(
+        max_length=100,
+        null=False
+    )
+    event_name = models.CharField(
+        max_length= 50,
+        default="Gaming",
+        null=False,
+        editable=False,
+    )
+    team_no = models.CharField(
+        max_length=100,
+        null=False,
+        default="1",
+        editable=False,
+    )
+    ############### participant 1
+    participant_1_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_1_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_1_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 2
+    participant_2_Name = models.CharField(
+        max_length=50,
+        null=False
+    )
+    participant_2_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_2_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 3
+    participant_3_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_3_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_3_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_3_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    ############### participant 4
+    participant_4_Name = models.CharField(
+        max_length=50,
+        null=True
+    )
+    participant_4_class = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_4_rollno = models.CharField(
+        max_length=100,
+        null=True
+    )
+    participant_4_contactno = models.CharField(
+        max_length=100,
+        null=True
+    )
+
+
+
+
   ####################################  #                       Applicant details Web Designing
 class Web_Designing_Details(models.Model):
     team_name = models.CharField(
@@ -401,12 +522,21 @@ class Web_Designing_Details(models.Model):
         max_length= 50,
         default="Web Designing",
         null=False,
-
+        editable=False,
+        
     )
+    TEAM_CHOICES = [
+        ('1', 'Team 1'),
+        ('2', 'Team 2'),
+        ('3', 'Team 3'),
+        ('4', 'Team 4'),
+        ('5', 'Team 5'),
+        ('6', 'Team 6')
+    ]
     team_no = models.CharField(
         max_length=100,
         null=False,
-        default="Team 1"
+        choices=TEAM_CHOICES
     )
     ############### participant 1
     participant_1_Name = models.CharField(
@@ -504,11 +634,13 @@ class Treasure_hunt_Details(models.Model):
         max_length= 50,
         default="Treasure Hunt",
         null=False,
+        editable=False,
     )
     team_no = models.CharField(
         max_length=100,
         null=False,
-        default="Team 1"
+        default="1",
+        editable=False,
     )
     ############### participant 1
     participant_1_Name = models.CharField(
@@ -634,28 +766,42 @@ class Coding_Details(models.Model):
         max_length= 50,
         default="Coding",
         null=False,
+        editable=False,
     )
+    TEAM_CHOICES = [
+        ('1', 'Team 1'),
+        ('2', 'Team 2'),
+        ('3', 'Team 3'),
+        ('4', 'Team 4'),
+        ('5', 'Team 5'),
+        ('6', 'Team 6')
+    ]
     team_no = models.CharField(
         max_length=100,
         null=False,
-        default="Team 1"
+        choices=TEAM_CHOICES
     )
     ############### participant 1   
     participant_1_Name = models.CharField(
         max_length=500,
-        null=False
+        default=" ",
+        null=False,
+        
     )
     participant_1_class = models.CharField(
         max_length=50,
-        null=True
+        default=" ",
+        null=False
     )
     participant_1_rollno = models.CharField(
         max_length=1000,
-        null=True
+        default=" ",
+        null=False
     )
     participant_1_contactno = models.CharField(
         max_length=500,
-        null=True
+        default=" ",
+        null=False
     )
 
 
@@ -676,45 +822,71 @@ class Hackathon_Details(models.Model):
         max_length= 50,
         default="Hackathon",
         null=False,
+        editable= False,
 
     )
+    TEAM_CHOICES = [
+        ('1', 'Team 1'),
+        ('2', 'Team 2'),
+        ('3', 'Team 3'),
+        ('4', 'Team 4'),
+        ('5', 'Team 5'),
+        ('6', 'Team 6')
+    ]
     team_no = models.CharField(
         max_length=100,
         null=False,
-        default="Team 1"
+        choices=TEAM_CHOICES
     )
     ############### participant 1
     participant_1_Name = models.CharField(
         max_length=50,
+        default=" ",
         null=False
     )
     participant_1_class = models.CharField(
         max_length=100,
-        null=True
+        default=" ",
+        null=False
     )
     participant_1_rollno = models.CharField(
         max_length=100,
-        null=True
+        default=" ",
+        null=False
     )
     participant_1_contactno = models.CharField(
         max_length=100,
-        null=True
+        default=" ",
+        null=False
     )
     ############### participant 2
     participant_2_Name = models.CharField(
         max_length=50,
+        default=" ",
         null=False
         
     )
     participant_2_class = models.CharField(
         max_length=100,
-        null=True
+        default=" ",
+        null=False
     )
     participant_2_rollno = models.CharField(
         max_length=100,
-        null=True
+        default=" ",
+        null=False
     )
     participant_2_contactno = models.CharField(
         max_length=100,
-        null=True
+        default=" ",
+        null=False
     )
+
+
+
+
+
+
+
+
+

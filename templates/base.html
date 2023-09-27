@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,29 +7,29 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{% block tile%} {% endblock %}</title>
+  <title>{% block title%} {% endblock %}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="static/img/favicon.png" rel="icon">
-  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{% static 'img/favicon.png'%}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png'%}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="static/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="static/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="static/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="static/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.snow.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.bubble.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/simple-datatables/style.css'%}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="static/css/style.css" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.5.0
@@ -46,7 +46,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="{% url 'index'%}" class="logo d-flex align-items-center">
-        <img src="static/img/logo.png" alt="">
+        <img src="{% static 'img/logo.png' %}" alt="">
         <span class="d-none d-lg-block">Manoeuvre</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -59,24 +59,10 @@
 
         <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="static/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url 'logout' %} ">           
+            <span class="d-none d-md-block "><i class="bi bi-box-arrow-left"></i> {{request.user}}</span>           
           </a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-                <h6>Kevin Anderson</h6>               
-              </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
 
       </ul>
@@ -94,26 +80,144 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+     
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>Event Registration</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{% url 'registrationpage_view'%}">
-              <i class="bi bi-circle"></i><span>Registration</span>
+            <a href="{% url 'registration' 'ITManager' %}" class="ITQregistrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>IT Manager</span>
             </a>
-          </li>           
+          </li>  
+          <li>
+            <a href="{% url 'registration' 'ITQuiz' %}" class="ITQregistrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>IT Quiz</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'registration' 'Hackathon' %}" class="HackregistrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>Hackathon</span>
+            </a>
+          </li>  
+          <li>
+            <a href="{% url 'registration' 'coding' %}" class="registrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>Coding</span>
+            </a>
+          </li>  
+          <li>
+            <a href="{% url 'registration' 'TreasureHunt' %}" class="registrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>Treasure Hunt</span>
+            </a>
+          </li>  
+          <li>
+            <a href="{% url 'registration' 'Gaming' %}"class="registrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>Gaming</span>
+            </a>
+          </li>  
+          <li>
+            <a href="{% url 'registration' 'Shortfilm' %}" class="registrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>Short Film</span>
+            </a>
+          </li>  
+          <li>
+            <a href="{% url 'registration' 'webdesign' %}" class="webregistrationBtn" style="cursor: pointer;">
+              <i class="bi bi-circle"></i><span>Web Designing</span>
+            </a>
+          </li>            
         </ul>
       </li>
-      
-
-     
+    
     </ul>
 
   </aside><!-- End Sidebar-->
+
+  <!-- Toast Message -->
+  
+  <!-- Registration modal -->
+  <div class="modal fade" id="registrationModal">
+  <div id="snackbar">Event registration Successful.</div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Event Registration</h4>
+          <button type="button" class="closeModal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- Registration form or content here -->
+          <form method="post" id="registrationForm">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="event-name">Event Name</label>
+              <select class="form-control" id="event-name" name="event_name">
+                <a href="{% url 'registration' 'coding' %}">
+                <option value="coding" selected mincount="4">Coding & Debugging</option>
+                </a>
+                <a href="{% url 'registration' 'ITManager' %}">
+                <option value="itmanager" mincount="1">IT Manager</option>
+                </a>
+                <a href="{% url 'registration' 'ITQuiz' %}">
+                <option value="itquiz" mincount="2" group>IT Quiz</option>
+                
+                <a href="{% url 'registration' 'ITManager' %}"></a>
+                <option value="webdesign" mincount="2" group>Web Designing</option>
+                <a href="{% url 'registration' 'Hackathon' %}"></a>
+                <option value="hackathon" mincount="2" group>Hackathon</option>
+                <a href="{% url 'registration' 'ITManager' %}"></a>
+                <option value="shortfilm" mincount="10">Short Film</option>
+                <a href="{% url 'registration' 'Gaming' %}"></a>
+                <option value="gaming" mincount="4" group>Gaming</option>
+                <a href="{% url 'registration' 'Treasure Hunt' %}"></a>
+                <option value="treasurehunt" mincount="6" group>Treasure Hunt</option>
+
+              </select>
+            </div>
+            <hr />
+            <div class="participant-container">
+              <h5 class="text-secondary text-center">Participant Details</h5>
+              <div class="totalparticipant mt-3">
+
+                <!-- hidden participant detail template for cloning -->
+                <div class="participant-details-template" style="display: none;">
+                  <div class="form-group details">
+                    <!-- Name and register number of participant -->
+                    <input type="text" name="team_name" class="form-control participant-name" id="sampleid" placeholder="Participant 1 Name">
+                    <input type="text" class="form-control register-number" id="sample" placeholder="Register Number">
+                  </div>
+                </div>
+
+                <h5 class="isgroup" style="display: none;"></h5>
+                
+                <div class="participant-details">
+                  <!-- Participant details will be added here -->
+                </div>
+
+              </div>
+  
+              <div class="text-center">
+                <button class="btn add-participant" id="add-participant">Add Participant</button>
+              </div>
+              
+            </div>
+            <div class="text-center mb-0" id="registerBtn">
+              <button type="submit" class="register-event btn btn-primary px-5" id="register-event">Register</button>
+            </div>
+          </form>
+        </div>
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Register</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
 
   <main id="main" class="main">
     {% block content %}
@@ -136,19 +240,41 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- bootstap 4 for crispy forms -->
+<!-- Include Bootstrap 4 CSS from a CDN (recommended) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+
+<!-- bootstap 5 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+  <!-- Your other head content here -->
+
 
   <!-- Vendor JS Files -->
-  <script src="static/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="static/vendor/chart.js/chart.umd.js"></script>
-  <script src="static/vendor/echarts/echarts.min.js"></script>
-  <script src="static/vendor/quill/quill.min.js"></script>
-  <script src="static/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="static/vendor/tinymce/tinymce.min.js"></script>
-  <script src="static/vendor/php-email-form/validate.js"></script>
+  <script src="{% static 'vendor/apexcharts/apexcharts.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'vendor/chart.js/chart.umd.js'%}"></script>
+  <script src="{% static 'vendor/echarts/echarts.min.js'%}"></script>
+  <script src="{% static 'vendor/quill/quill.min.js'%}"></script>
+  <script src="{% static 'vendor/simple-datatables/simple-datatables.js'%}"></script>
+  <script src="{% static 'vendor/tinymce/tinymce.min.js'%}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js'%}"></script>
+
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="static/js/main.js"></script>
+  <script src="{% static 'js/main.js'%}"></script>
+
+  <script>
+    
+  </script>
+
+  <!-- <script>
+
+  </script> -->
 
 </body>
 
