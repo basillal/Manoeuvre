@@ -19,14 +19,14 @@
 
             <!-- General Form Elements -->
             <form  method="post">  
-                  {% if messages %}
+                  {% if request.session.success_message %}
 
                   <script>
-                      alert("SUCCESSFULLY");
-                     
+                      alert("REGISTERED");                     
                       
-                  </script>
-            {% endif %}
+                  </script>               
+                {% endif %}
+
                  {% csrf_token %}
               <div class="row mb-3">
                
