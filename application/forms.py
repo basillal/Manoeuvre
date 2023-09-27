@@ -100,10 +100,7 @@ class tressureForm(forms.ModelForm):
         model = Treasure_hunt_Details
         fields = '__all__'
 
-        labels = {
-            'team_leader': 'King'
-            
-        }
+      
 
 class itquizForm(forms.ModelForm):
     class Meta:

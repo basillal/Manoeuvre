@@ -226,14 +226,14 @@ class Applicant_Details(models.Model):
         null=True
     )
     ###########################################################################   individual database    ######################################################
-
+class Team_name_list(models.Model):
+    team_name = models.CharField(max_length=255)    
+    def __str__(self):
+        return self.team_name  
 # ###################################                               Applicant details IT Manager
 # class IT_manager_Details(models.Model):
 class IT_manager_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -349,10 +349,7 @@ class IT_manager_Details(models.Model):
 
   ####################################  #                          Applicant details IT Quiz
 class IT_Quiz_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -416,10 +413,7 @@ class IT_Quiz_Details(models.Model):
 
 ####################################                           Applicant details Gaming
 class Gaming_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -510,10 +504,7 @@ class Gaming_Details(models.Model):
 
   ####################################  #                       Applicant details Web Designing
 class Web_Designing_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -580,10 +571,7 @@ class Web_Designing_Details(models.Model):
 
 ####################################                       Applicant details Short Film
 class Short_film_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -622,10 +610,7 @@ class Short_film_Details(models.Model):
 ####################################                             Applicant details treasure hunt
 #1 team from each grp and 6 members will there in each team
 class Treasure_hunt_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -754,10 +739,7 @@ class Treasure_hunt_Details(models.Model):
 #  so each member will be a team only ... so from one grp 6 team will be there with 1 participant each
 
 class Coding_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -810,10 +792,7 @@ class Coding_Details(models.Model):
   ####################################  #                       Applicant details Hackathon
   # 2 team from each grp with 2 particpant each in a team
 class Hackathon_Details(models.Model):
-    team_name = models.CharField(
-        max_length=100,
-        null=False
-    )
+    team_name =  models.ForeignKey(Team_name_list, on_delete=models.CASCADE)
     team_leader = models.CharField(
         max_length=100,
         null=False
@@ -886,6 +865,7 @@ class Hackathon_Details(models.Model):
 
 
 
+     
 
 
 
