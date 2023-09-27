@@ -36,10 +36,11 @@ def index(request):
 
 
 # @login_required(login_url='login')
-def registration(request, event_name):
+def registration(request, event_name):    
     event=event_name
     print(event_name,event)
-
+    if 'success_message' in request.session:
+        del request.session['success_message']  
     if event == "ITManager":
         form = itmanagerForm()
         registered_students = IT_manager_Details.objects.filter(event_name = "IT Manager")  
@@ -47,8 +48,10 @@ def registration(request, event_name):
             form = itmanagerForm(request.POST)
             if form.is_valid():
                 form.save()  
+                request.session['success_message'] = 'registered'
                 form = itmanagerForm()
-                messages.info(request,'Successfully')
+               
+                # messages.info(request,'Successfully')
 
                
                 
@@ -62,7 +65,7 @@ def registration(request, event_name):
             
 
         }    
-               
+             
         return render(request,'registration.html', context)
     elif event == "ITQuiz":
         form = itquizForm()
@@ -70,9 +73,10 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = itquizForm(request.POST)
             if form.is_valid():
-                form.save()    
+                form.save()  
+                request.session['success_message'] = 'registered'  
                 form = itquizForm()
-                messages.info(request,'Successfully')        
+                     
 
         context = {
             'form': form,
@@ -88,8 +92,9 @@ def registration(request, event_name):
             form = gamingForm(request.POST)
             if form.is_valid():
                 form.save() 
+                request.session['success_message'] = 'registered'
                 form = gamingForm()
-                messages.info(request,'Successfully')           
+                        
 
         context = {
             'form': form,
@@ -105,8 +110,9 @@ def registration(request, event_name):
             form = hackathonForm(request.POST)
             if form.is_valid():
                 form.save()  
+                request.session['success_message'] = 'registered'
                 form = hackathonForm()
-                messages.info(request,'Successfully')             
+                          
 
         context = {
             'form': form,
@@ -122,8 +128,9 @@ def registration(request, event_name):
             form = tressureForm(request.POST)
             if form.is_valid():
                 form.save() 
+                request.session['success_message'] = 'registered'
                 form = tressureForm()
-                messages.info(request,'Successfully')             
+                          
 
         context = {
             'form': form,
@@ -138,9 +145,10 @@ def registration(request, event_name):
         if request.method == 'POST':
             form = shortfilmForm(request.POST)
             if form.is_valid():
-                form.save() 
+                form.save()
+                request.session['success_message'] = 'registered' 
                 form = shortfilmForm()
-                messages.info(request,'Successfully')   
+                
                           
 
         context = {
@@ -157,8 +165,9 @@ def registration(request, event_name):
             form = codingForm(request.POST)
             if form.is_valid():
                 form.save() 
+                request.session['success_message'] = 'registered'
                 form = codingForm()
-                messages.info(request,'Successfully')   
+                
                                      
 
         context = {
@@ -175,8 +184,9 @@ def registration(request, event_name):
             form = WebdesignForm(request.POST)
             if form.is_valid():
                 form.save()  
+                request.session['success_message'] = 'registered'
                 form = WebdesignForm()
-                messages.info(request,'Successfully')           
+                        
 
         context = {
             'form': form,
